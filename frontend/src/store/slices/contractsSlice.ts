@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 import api from "../../api/client";
 
 interface Contract {
@@ -8,6 +7,7 @@ interface Contract {
   vendor?: string;
   status: string;
   riskScore?: number;
+  extractedDataId?: string;
   createdAt: string;
 }
 

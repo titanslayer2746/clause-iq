@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { fetchTasks, updateTask, deleteTask, createTask } from "../store/slices/tasksSlice";
+import { fetchTasks, updateTask, deleteTask } from "../store/slices/tasksSlice";
 import { fetchMembers } from "../store/slices/organizationSlice";
 
 const Tasks = () => {
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.auth);
-  const { tasks, loading, error, pagination } = useAppSelector(
+  const { tasks, loading, error } = useAppSelector(
     (state) => state.tasks
   );
   const { members } = useAppSelector((state) => state.organization);
@@ -21,7 +20,6 @@ const Tasks = () => {
   });
 
   const [viewMode, setViewMode] = useState<"list" | "board">("list");
-  const [showCreateModal, setShowCreateModal] = useState(false);
 
   useEffect(() => {
     dispatch(fetchTasks(filters));
@@ -47,31 +45,6 @@ const Tasks = () => {
     );
   };
 
-  const getStatusBadge = (status: string) => {
-    const statusClasses: { [key: string]: string } = {
-      pending: "bg-gray-100 text-gray-800",
-      in_progress: "bg-blue-100 text-blue-800",
-      completed: "bg-green-100 text-green-800",
-      cancelled: "bg-red-100 text-red-800",
-    };
-
-    const statusLabels: { [key: string]: string } = {
-      pending: "Pending",
-      in_progress: "In Progress",
-      completed: "Completed",
-      cancelled: "Cancelled",
-    };
-
-    return (
-      <span
-        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-          statusClasses[status] || "bg-gray-100 text-gray-800"
-        }`}
-      >
-        {statusLabels[status] || status}
-      </span>
-    );
-  };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);

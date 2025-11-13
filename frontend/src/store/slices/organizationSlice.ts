@@ -13,6 +13,7 @@ interface Organization {
   name: string;
   members: Member[];
   settings?: any;
+  createdAt?: string;
 }
 
 interface OrganizationState {
