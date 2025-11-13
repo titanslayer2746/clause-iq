@@ -1,9 +1,9 @@
-import { Notification, NotificationType } from "../models";
+import { Notification, NotificationType, NotificationTypeValue } from "../models";
 
 class NotificationService {
   // Create a notification
   async createNotification(data: {
-    type: NotificationType;
+    type: NotificationTypeValue;
     title: string;
     message: string;
     userId: string;

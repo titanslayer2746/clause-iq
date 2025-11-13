@@ -1,19 +1,26 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-export type NotificationType = 
-  | "task_due_soon"
-  | "task_overdue"
-  | "contract_uploaded"
-  | "extraction_completed"
-  | "risk_detected"
-  | "comment_mention"
-  | "assignment"
-  | "general";
+// Notification type constants for runtime use
+export const NotificationType = {
+  TASK_DUE_SOON: "task_due_soon",
+  TASK_OVERDUE: "task_overdue",
+  TASK_ASSIGNED: "assignment",
+  CONTRACT_UPLOADED: "contract_uploaded",
+  EXTRACTION_COMPLETED: "extraction_completed",
+  AI_ANALYSIS_COMPLETED: "extraction_completed", // Using extraction_completed
+  RISK_DETECTED: "risk_detected",
+  COMMENT_MENTION: "comment_mention",
+  MEMBER_INVITED: "general",
+  GENERAL: "general",
+} as const;
+
+// Type derived from the constant for type safety
+export type NotificationTypeValue = typeof NotificationType[keyof typeof NotificationType];
 
 export interface INotification extends Document {
   userId: mongoose.Types.ObjectId;
   organizationId: mongoose.Types.ObjectId;
-  type: NotificationType;
+  type: NotificationTypeValue;
   title: string;
   message: string;
   relatedContractId?: mongoose.Types.ObjectId;

@@ -12,7 +12,7 @@ export {
 } from "./ExtractedData";
 export { default as Invitation, IInvitation } from "./Invitation";
 export { default as Task, ITask, TaskType, TaskStatus, TaskPriority } from "./Task";
-export { default as Notification, INotification, NotificationType } from "./Notification";
+export { default as Notification, INotification, NotificationType, NotificationTypeValue } from "./Notification";
 export { default as PlaybookRule, IPlaybookRule, RuleType } from "./PlaybookRule";
 export { default as ComplianceResult, IComplianceResult, IDeviation } from "./ComplianceResult";
 export { default as ChatMessage, IChatMessage, ISourceCitation } from "./ChatMessage";
